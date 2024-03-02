@@ -10,6 +10,9 @@ COPY frontend/package*.json ./
 # Install project dependencies
 RUN npm install
 
+# Install Vue CLI
+RUN npm install -g @vue/cli
+
 # Bundle app source inside the docker image by copying the frontend directory
 COPY frontend/ ./
 
