@@ -1,11 +1,15 @@
 FROM php:8.2-apache
 
+RUN mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+
 # apt-get update and install required Ubuntu packages
 RUN apt-get update \
- && apt-get install -y curl git zlib1g-dev default-mysql-client libzip-dev unzip
+ && apt-get install -y curl git zlib1g-dev default-mysql-client libzip-dev libicu-dev unzip
 
  # install required php extensions
-RUN docker-php-ext-install zip pdo pdo_mysql mysqli
+RUN docker-php-ext-install zip pdo pdo_mysql mysqli intl
+
+RUN docker-php-ext-enable opcache
 
  # install and configure xdebug
 #RUN pecl install xdebug \
