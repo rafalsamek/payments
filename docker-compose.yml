@@ -16,6 +16,7 @@ services:
       - ./docker/backend/php/php.ini:/usr/local/etc/php/conf.d/php.ini
     command: >
       bash -c "composer install --no-interaction &&
+               chown -R $(stat -c "%U:%G" composer.json) vendor var &&
                apache2-foreground"
     networks:
       - network
