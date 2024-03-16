@@ -16,6 +16,8 @@ RUN npm install -g @vue/cli
 # Bundle app source inside the docker image by copying the frontend directory
 COPY frontend/ ./
 
+RUN chown -R $(stat -c "%U:%G" package.json) node_modules
+
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
 
