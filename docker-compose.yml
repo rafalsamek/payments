@@ -66,6 +66,7 @@ services:
       - ./frontend:/app
     command: >
       bash -c "npm install &&
+               chown -R $(stat -c "%U:%G" package.json) node_modules &&
                npm run serve"
     ports:
       - "80:8080"
