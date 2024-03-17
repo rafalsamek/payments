@@ -44,7 +44,9 @@ services:
       - network
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    build:
+      context: .
+      dockerfile: ./docker/phpmyadmin/Dockerfile
     container_name: payments_phpmyadmin
     environment:
       PMA_HOST: mysql
@@ -75,7 +77,9 @@ services:
       - network
 
   nginx:
-    image: nginx:alpine
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
     container_name: payments_nginx
     volumes:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
@@ -91,7 +95,9 @@ services:
       - network
 
   certbot:
-    image: certbot/certbot
+    build:
+      context: .
+      dockerfile: ./docker/certbot/Dockerfile
     container_name: payments_certbot
     volumes:
       - ./docker/certbot/conf:/etc/letsencrypt
