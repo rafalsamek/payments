@@ -25,6 +25,8 @@ RUN docker-php-ext-enable opcache
  # enable required apache modules
 RUN a2enmod rewrite headers
 
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
  # install and configure composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
