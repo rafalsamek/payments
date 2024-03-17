@@ -17,6 +17,7 @@ services:
     user: appuser
     command: >
       bash -c "composer install --no-interaction &&
+               chown -R appuser:appuser . &&
                apache2-foreground"
     networks:
       - network
