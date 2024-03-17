@@ -36,5 +36,15 @@ RUN apt-get update && apt-get install -y wget \
 
 WORKDIR /var/www/html
 
+# Create a new user "appuser" and set the user ID and group ID
+RUN groupadd -g 1000 appuser && \
+    useradd -u 1000 -g appuser -m appuser
+
+# Change ownership of the WORKDIR to the appuser
+RUN chown -R appuser:appuser /var/www/html
+
+# Switch to the new user
+USER appuser
+
 EXPOSE 80
 CMD ["apache2-foreground"]
