@@ -14,7 +14,6 @@ services:
       - ./backend:/var/www/html
       - ./docker/backend/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./docker/backend/php/php.ini:/usr/local/etc/php/conf.d/php.ini
-    user: appuser
     command: >
       bash -c "composer install --no-interaction &&
                chown -R appuser:appuser . &&
