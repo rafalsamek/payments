@@ -15,7 +15,8 @@ services:
       - ./docker/backend/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./docker/backend/php/php.ini:/usr/local/etc/php/conf.d/php.ini
     command: >
-      bash -c "composer install --no-interaction &&
+      bash -c "su appuser &&
+               composer install --no-interaction &&
                apache2-foreground"
     networks:
       - network
